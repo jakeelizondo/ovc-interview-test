@@ -1,6 +1,6 @@
 import React from 'react';
 import { Post } from '../../posts.model';
-import './UserPost.css';
+import './UserPostRow.css';
 
 interface UserPostProps {
   post: Post;

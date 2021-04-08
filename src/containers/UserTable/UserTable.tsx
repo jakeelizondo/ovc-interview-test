@@ -1,13 +1,19 @@
 import React from 'react';
-import UserRow from '../../components/UserRow/UserRow';
+import TableHeader from '../../components/TableHeader/TableHeader';
+import UserPostRow from '../../components/UserPostRow/UserPostRow';
+import UserRow from '../../components/UserDataRow/UserDataRow';
+import { Post } from '../../posts.model';
 import { User } from '../../users.model';
 import './UserTable.css';
 
 interface UserTableProps {
   users: User[];
-  isFiltering?: boolean;
-  filterTerm?: string;
+  posts: Post[];
+  isFiltering: boolean;
+  filterTerm: string;
+  isViewingPosts: boolean;
   onRowClick: (id: number, name: string) => void;
+  onBack: () => void;
 }
 
 const UserTable = (props: UserTableProps) => {
@@ -30,7 +36,7 @@ const UserTable = (props: UserTableProps) => {
   };
 
   const generateFilteredUsers = () => {
-    const filteredUsers: any[] = [];
+    const filteredUsers: JSX.Element[] = [];
 
     props.users.forEach((user) => {
       if (user.name.toLowerCase().includes(props.filterTerm!.toLowerCase())) {
@@ -49,23 +55,35 @@ const UserTable = (props: UserTableProps) => {
         );
       }
     });
+    if (!!filteredUsers.length) {
+      return filteredUsers;
+    } else {
+      return <p>No users found for that search</p>;
+    }
+  };
 
-    return filteredUsers;
+  const generateUserPosts = () => {
+    return props.posts.map((post) => {
+      return <UserPostRow post={post} />;
+    });
   };
 
   return (
     <table className="user-table">
-      <thead>
-        <tr className="header-row">
-          <th>Name</th>
-          <th>Email</th>
-          <th>City</th>
-          <th>Company</th>
-        </tr>
-      </thead>
+      {props.isViewingPosts ? (
+        <TableHeader cols={['Title', 'Body']} />
+      ) : (
+        <TableHeader cols={['Name', 'Email', 'City', 'Company']} />
+      )}
+
       <tbody>
-        {!props.isFiltering ? generateAllUsers() : null}
-        {props.isFiltering ? generateFilteredUsers() : null}
+        {!props.isFiltering && !props.isViewingPosts
+          ? generateAllUsers()
+          : null}
+        {props.isFiltering && !props.isViewingPosts
+          ? generateFilteredUsers()
+          : null}
+        {props.isViewingPosts ? generateUserPosts() : null}
       </tbody>
     </table>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserRow.css';
+import './UserDataRow.css';
 
 interface UserRowProps {
   onRowClick: (id: number, name: string) => void;

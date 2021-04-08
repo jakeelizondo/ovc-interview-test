@@ -30,7 +30,9 @@ const SearchBar = (props: SearchBarProps) => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} disabled={!!!searchTerm.length}>
+        Search
+      </button>
 
       {props.isFiltering ? (
         <button onClick={handleTableReset}>Reset</button>

@@ -4,7 +4,6 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { getUsers } from '../../store/actions/users';
 import { getPosts } from '../../store/actions/posts';
 import { RootStore } from '../../store/store';
-import UserPosts from '../UserPosts/UserPosts';
 import UserTable from '../UserTable/UserTable';
 import './App.css';
 
@@ -23,6 +22,9 @@ const App = () => {
 
   const isLoadingUsers = useSelector(
     (state: RootStore) => state.users.loadingUsers
+  );
+  const isLoadingPosts = useSelector(
+    (state: RootStore) => state.posts.loadingPosts
   );
 
   const handleFilterUsers = (text: string) => {
@@ -52,27 +54,30 @@ const App = () => {
   return (
     <div className="App">
       {isLoadingUsers ? <p>Loading users...</p> : null}
-      {usersArr !== undefined && !isViewingPosts ? (
+      {isLoadingPosts ? <p>Loading posts...</p> : null}
+      {usersArr !== undefined ? (
         <div>
           <SearchBar
             isFiltering={isFiltering}
             onReset={handleTableReset}
             onFilter={handleFilterUsers}
           />
+          {isViewingPosts ? (
+            <div>
+              <button onClick={handlePostViewBackClick}>Back to users</button>
+              <h3>{`${focusUser}'s Posts`}</h3>
+            </div>
+          ) : null}
           <UserTable
             users={usersArr}
+            posts={!!postsArr ? postsArr : []}
+            onBack={handlePostViewBackClick}
             isFiltering={isFiltering}
+            isViewingPosts={isViewingPosts}
             filterTerm={filterTerm}
             onRowClick={handleRowClick}
           />
         </div>
-      ) : null}
-      {isViewingPosts && postsArr !== undefined ? (
-        <UserPosts
-          user={focusUser}
-          posts={postsArr}
-          onBack={handlePostViewBackClick}
-        />
       ) : null}
     </div>
   );
