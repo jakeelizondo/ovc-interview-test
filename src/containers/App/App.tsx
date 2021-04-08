@@ -17,15 +17,15 @@ const App = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
-  const usersArr = useSelector((state: RootStore) => state.users.users);
-  const postsArr = useSelector((state: RootStore) => state.posts.posts);
-
   const isLoadingUsers = useSelector(
     (state: RootStore) => state.users.loadingUsers
   );
   const isLoadingPosts = useSelector(
     (state: RootStore) => state.posts.loadingPosts
   );
+
+  const usersArr = useSelector((state: RootStore) => state.users.users);
+  const postsArr = useSelector((state: RootStore) => state.posts.posts);
 
   const handleFilterUsers = (text: string) => {
     setIsFiltering(true);
@@ -52,34 +52,47 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      {isLoadingUsers ? <p>Loading users...</p> : null}
-      {isLoadingPosts ? <p>Loading posts...</p> : null}
-      {usersArr !== undefined ? (
-        <div>
-          <SearchBar
-            isFiltering={isFiltering}
-            onReset={handleTableReset}
-            onFilter={handleFilterUsers}
-          />
-          {isViewingPosts ? (
-            <div>
-              <button onClick={handlePostViewBackClick}>Back to users</button>
-              <h3>{`${focusUser}'s Posts`}</h3>
-            </div>
-          ) : null}
-          <UserTable
-            users={usersArr}
-            posts={!!postsArr ? postsArr : []}
-            onBack={handlePostViewBackClick}
-            isFiltering={isFiltering}
-            isViewingPosts={isViewingPosts}
-            filterTerm={filterTerm}
-            onRowClick={handleRowClick}
-          />
-        </div>
-      ) : null}
-    </div>
+    <React.Fragment>
+      <header>User Explorer</header>
+      <div className="App">
+        {isLoadingUsers ? (
+          <p className="load-message">Loading users...</p>
+        ) : null}
+        {isLoadingPosts ? (
+          <p className="load-message">Loading posts...</p>
+        ) : null}
+        {usersArr !== undefined ? (
+          <div>
+            {!isViewingPosts ? (
+              <SearchBar
+                isFiltering={isFiltering}
+                onReset={handleTableReset}
+                onFilter={handleFilterUsers}
+              />
+            ) : null}
+            {isViewingPosts ? (
+              <div>
+                <button
+                  className="back-button hoverable"
+                  onClick={handlePostViewBackClick}
+                >
+                  Back to users
+                </button>
+                <h3 className="post-user">{`${focusUser}'s Posts:`}</h3>
+              </div>
+            ) : null}
+            <UserTable
+              users={usersArr}
+              posts={!!postsArr ? postsArr : []}
+              isFiltering={isFiltering}
+              isViewingPosts={isViewingPosts}
+              filterTerm={filterTerm}
+              onRowClick={handleRowClick}
+            />
+          </div>
+        ) : null}
+      </div>
+    </React.Fragment>
   );
 };
 

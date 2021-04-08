@@ -1,5 +1,6 @@
 import React from 'react';
 import { Post } from '../../posts.model';
+import './UserPostRow.css';
 
 interface UserPostRowProps {
   post: Post;
@@ -8,8 +9,8 @@ interface UserPostRowProps {
 const UserPost = (props: UserPostRowProps) => {
   return (
     <tr>
-      <td>{props.post.title}</td>
-      <td>{props.post.body}</td>
+      <td className="post-title">{props.post.title}</td>
+      <td className="post-body">{props.post.body}</td>
     </tr>
   );
 };

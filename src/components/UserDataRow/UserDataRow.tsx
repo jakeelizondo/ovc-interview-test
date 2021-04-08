@@ -1,4 +1,5 @@
 import React from 'react';
+import './UserDataRow.css';
 
 interface UserDataRowProps {
   onRowClick: (id: number, name: string) => void;
@@ -14,7 +15,7 @@ interface UserDataRowProps {
 const UserRow = (props: UserDataRowProps) => {
   return (
     <tr
-      className="user-row"
+      className="user-row hoverable"
       onClick={() => props.onRowClick(props.user.id, props.user.name)}
     >
       <td className="user-name">{props.user.name}</td>

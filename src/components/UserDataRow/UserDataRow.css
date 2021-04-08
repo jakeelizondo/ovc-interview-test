@@ -1,0 +1,12 @@
+.user-name {
+  text-align: left;
+}
+
+.user-email {
+  text-align: center;
+}
+
+.user-city,
+.user-company {
+  text-align: right;
+}

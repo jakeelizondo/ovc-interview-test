@@ -13,7 +13,6 @@ interface UserTableProps {
   filterTerm: string;
   isViewingPosts: boolean;
   onRowClick: (id: number, name: string) => void;
-  onBack: () => void;
 }
 
 const UserTable = (props: UserTableProps) => {

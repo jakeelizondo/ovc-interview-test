@@ -4,9 +4,28 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 0rem;
+  background-color: #457b9d;
+  color: white;
+  margin: 2rem 0rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .search-bar input {
-  margin-left: 1rem;
+  margin: 0rem 1rem 0rem 0.5rem;
   text-align: center;
+  font-size: 20px;
+}
+
+.search-bar button {
+  margin: 0rem 0.5rem;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.search-bar button:disabled {
+  background-color: rgb(230, 230, 230);
+  color: rgb(175, 175, 175);
 }
