@@ -66,19 +66,6 @@ const App = () => {
       <div className="App">
         {usersArr !== undefined ? (
           <div>
-            {!isViewingPosts ? (
-              <SearchBar
-                isFiltering={isFiltering}
-                onReset={handleTableReset}
-                onFilter={handleFilterUsers}
-              />
-            ) : null}{' '}
-            {isLoadingUsers ? (
-              <p className="load-message">Loading users...</p>
-            ) : null}
-            {isLoadingPosts ? (
-              <p className="load-message">Loading posts...</p>
-            ) : null}
             {isViewingPosts ? (
               <div>
                 <button
@@ -89,15 +76,26 @@ const App = () => {
                 </button>
                 <h3 className="post-user">{`${focusUser}'s Posts:`}</h3>
               </div>
-            ) : null}
-            <UserTable
-              users={usersArr}
-              posts={!!postsArr ? postsArr : []}
-              isFiltering={isFiltering}
-              isViewingPosts={isViewingPosts}
-              filterTerm={filterTerm}
-              onRowClick={handleRowClick}
-            />
+            ) : null}{' '}
+            {(isLoadingUsers || isLoadingPosts) && !isViewingPosts ? (
+              <p className="load-message">Loading...</p>
+            ) : (
+              <React.Fragment>
+                <SearchBar
+                  isFiltering={isFiltering}
+                  onReset={handleTableReset}
+                  onFilter={handleFilterUsers}
+                />
+                <UserTable
+                  users={usersArr}
+                  posts={!!postsArr ? postsArr : []}
+                  isFiltering={isFiltering}
+                  isViewingPosts={isViewingPosts}
+                  filterTerm={filterTerm}
+                  onRowClick={handleRowClick}
+                />
+              </React.Fragment>
+            )}
           </div>
         ) : null}
       </div>
