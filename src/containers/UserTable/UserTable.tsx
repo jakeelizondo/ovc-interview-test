@@ -1,7 +1,7 @@
 import React from 'react';
 import TableHeader from '../../components/TableHeader/TableHeader';
 import UserPostRow from '../../components/UserPostRow/UserPostRow';
-import UserRow from '../../components/UserDataRow/UserDataRow';
+import UserDataRow from '../../components/UserDataRow/UserDataRow';
 import { Post } from '../../posts.model';
 import { User } from '../../users.model';
 import './UserTable.css';
@@ -20,7 +20,7 @@ const UserTable = (props: UserTableProps) => {
   const generateAllUsers = () => {
     return props.users.map((user) => {
       return (
-        <UserRow
+        <UserDataRow
           key={user.id}
           user={{
             id: user.id,
@@ -41,7 +41,7 @@ const UserTable = (props: UserTableProps) => {
     props.users.forEach((user) => {
       if (user.name.toLowerCase().includes(props.filterTerm!.toLowerCase())) {
         filteredUsers.push(
-          <UserRow
+          <UserDataRow
             key={user.id}
             user={{
               id: user.id,

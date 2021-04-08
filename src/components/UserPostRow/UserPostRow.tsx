@@ -1,12 +1,11 @@
 import React from 'react';
 import { Post } from '../../posts.model';
-import './UserPostRow.css';
 
-interface UserPostProps {
+interface UserPostRowProps {
   post: Post;
 }
 
-const UserPost = (props: UserPostProps) => {
+const UserPost = (props: UserPostRowProps) => {
   return (
     <tr>
       <td>{props.post.title}</td>

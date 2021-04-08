@@ -1,7 +1,6 @@
 import React from 'react';
-import './UserDataRow.css';
 
-interface UserRowProps {
+interface UserDataRowProps {
   onRowClick: (id: number, name: string) => void;
   user: {
     id: number;
@@ -12,7 +11,7 @@ interface UserRowProps {
   };
 }
 
-const UserRow = (props: UserRowProps) => {
+const UserRow = (props: UserDataRowProps) => {
   return (
     <tr
       className="user-row"
