@@ -1,0 +1,11 @@
+.error-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error-bar h3 {
+  background-color: red;
+  color: white;
+  padding: 1rem 3rem;
+}

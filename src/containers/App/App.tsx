@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import { getUsers } from '../../store/actions/users';
-import { clearPosts, getPosts } from '../../store/actions/posts';
+import { getUsers, clearUsersError } from '../../store/actions/users';
+import {
+  clearPosts,
+  clearPostsError,
+  getPosts,
+} from '../../store/actions/posts';
 import { RootStore } from '../../store/store';
+
+import SearchBar from '../../components/SearchBar/SearchBar';
 import UserTable from '../UserTable/UserTable';
+import HeadingBar from '../../components/HeadingBar/HeadingBar';
+import ErrorBar from '../../components/ErrorBar/ErrorBar';
 import './App.css';
 
+const errorMessages = {
+  userErr:
+    'There was an error loading your users. Please refresh the page and try again.',
+  postErr:
+    'There was an error loading the posts for this user. Please refresh the page and try again.',
+};
+
 const App = () => {
-  // INTITIALIZE LOCAL COMPONENT STATE
+  // INITIALIZE LOCAL COMPONENT STATE
   const [isFiltering, setIsFiltering] = useState(false);
   const [filterTerm, setFilterTerm] = useState('');
   const [focusUser, setFocusUser] = useState('');
@@ -19,6 +33,8 @@ const App = () => {
   // FETCH AND SET USERS UPON COMPONENT MOUNT
 
   useEffect(() => {
+    dispatch(clearUsersError());
+    dispatch(clearPostsError());
     dispatch(getUsers());
   }, [dispatch]);
 
@@ -32,6 +48,8 @@ const App = () => {
   );
   const usersArr = useSelector((state: RootStore) => state.users.users);
   const postsArr = useSelector((state: RootStore) => state.posts.posts);
+  const userError = useSelector((state: RootStore) => state.users.usersError);
+  const postError = useSelector((state: RootStore) => state.posts.postsError);
 
   // HANDLER FUNCTIONS
 
@@ -46,7 +64,6 @@ const App = () => {
   };
 
   const handleRowClick = (id: number, user: string) => {
-    console.log(id);
     dispatch(getPosts(id));
     setFocusUser(user);
     setIsViewingPosts(true);
@@ -57,6 +74,8 @@ const App = () => {
     setFilterTerm('');
     setFocusUser('');
     dispatch(clearPosts());
+    dispatch(clearUsersError());
+    dispatch(clearPostsError());
     setIsViewingPosts(false);
   };
 
@@ -64,37 +83,38 @@ const App = () => {
     <React.Fragment>
       <header>User Explorer</header>
       <div className="App">
+        {userError ? <ErrorBar message={errorMessages.userErr} /> : null}
+        {postError ? <ErrorBar message={errorMessages.postErr} /> : null}
         {usersArr !== undefined ? (
           <div>
-            {isViewingPosts ? (
-              <div>
-                <button
-                  className="back-button hoverable"
-                  onClick={handlePostViewBackClick}
-                >
-                  Back to users
-                </button>
-                <h3 className="post-user">{`${focusUser}'s Posts:`}</h3>
-              </div>
-            ) : null}{' '}
-            {(isLoadingUsers || isLoadingPosts) && !isViewingPosts ? (
+            {isViewingPosts && !userError && !postError ? (
+              <HeadingBar
+                headingText={`${focusUser}'s Posts:`}
+                onButtonClick={handlePostViewBackClick}
+              />
+            ) : null}
+
+            {isLoadingUsers || isLoadingPosts ? (
               <p className="load-message">Loading...</p>
-            ) : (
-              <React.Fragment>
-                <SearchBar
-                  isFiltering={isFiltering}
-                  onReset={handleTableReset}
-                  onFilter={handleFilterUsers}
-                />
-                <UserTable
-                  users={usersArr}
-                  posts={!!postsArr ? postsArr : []}
-                  isFiltering={isFiltering}
-                  isViewingPosts={isViewingPosts}
-                  filterTerm={filterTerm}
-                  onRowClick={handleRowClick}
-                />
-              </React.Fragment>
+            ) : null}
+
+            {!isViewingPosts && !userError && !postError ? (
+              <SearchBar
+                isFiltering={isFiltering}
+                onReset={handleTableReset}
+                onFilter={handleFilterUsers}
+              />
+            ) : null}
+
+            {userError || postError ? null : (
+              <UserTable
+                users={usersArr}
+                posts={!!postsArr ? postsArr : []}
+                isFiltering={isFiltering}
+                isViewingPosts={isViewingPosts}
+                filterTerm={filterTerm}
+                onRowClick={handleRowClick}
+              />
             )}
           </div>
         ) : null}

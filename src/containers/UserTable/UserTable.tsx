@@ -63,7 +63,7 @@ const UserTable = (props: UserTableProps) => {
 
   const generateUserPosts = () => {
     return props.posts.map((post) => {
-      return <UserPostRow post={post} />;
+      return <UserPostRow key={post.id} post={post} />;
     });
   };
 

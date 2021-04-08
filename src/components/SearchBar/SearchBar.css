@@ -44,6 +44,7 @@
     margin: 2rem 0rem;
     font-size: 20px;
     font-weight: 600;
+    width: 100%;
   }
 
   .search-bar input {

@@ -28,6 +28,8 @@ const userReducer = (
       };
     case actionTypes.LOADING_USERS:
       return { ...state, loadingUsers: true };
+    case actionTypes.CLEAR_USERS_ERROR:
+      return { ...state, usersError: null };
     default:
       return state;
   }

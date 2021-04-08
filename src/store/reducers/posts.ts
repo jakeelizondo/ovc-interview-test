@@ -34,6 +34,8 @@ const postReducer = (
       return { ...state, loadingPosts: true };
     case actionTypes.CLEAR_POSTS:
       return { ...state, posts: [] };
+    case actionTypes.CLEAR_POSTS_ERROR:
+      return { ...state, postsError: null };
     default:
       return state;
   }

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export const getPosts = (id: number) => {
   return async (dispatch: Dispatch<actionTypes.PostDispatchTypes>) => {
-    console.log('getting posts');
     dispatch({ type: actionTypes.LOADING_POSTS });
     try {
       const res = await axios.get(
@@ -25,4 +24,8 @@ export const getPosts = (id: number) => {
 
 export const clearPosts = () => {
   return { type: actionTypes.CLEAR_POSTS };
+};
+
+export const clearPostsError = () => {
+  return { type: actionTypes.CLEAR_POSTS_ERROR };
 };

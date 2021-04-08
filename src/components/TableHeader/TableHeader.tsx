@@ -9,7 +9,7 @@ const TableHeader = (props: TableHeaderProps) => {
     <thead>
       <tr className="header-row">
         {props.cols.map((col) => {
-          return <th>{col}</th>;
+          return <th key={col}>{col}</th>;
         })}
       </tr>
     </thead>
