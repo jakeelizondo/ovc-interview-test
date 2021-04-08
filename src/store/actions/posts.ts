@@ -9,7 +9,6 @@ export const getPosts = (id: number) => {
       const res = await axios.get(
         `https://jsonplaceholder.typicode.com/posts?userId=${id}`
       );
-
       dispatch({
         type: actionTypes.GET_POSTS_SUCCESS,
         payload: { posts: res.data },

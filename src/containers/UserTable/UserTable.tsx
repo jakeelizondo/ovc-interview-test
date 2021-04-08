@@ -1,9 +1,10 @@
 import React from 'react';
+import { Post } from '../../posts.model';
+import { User } from '../../users.model';
+
 import TableHeader from '../../components/TableHeader/TableHeader';
 import UserPostRow from '../../components/UserPostRow/UserPostRow';
 import UserDataRow from '../../components/UserDataRow/UserDataRow';
-import { Post } from '../../posts.model';
-import { User } from '../../users.model';
 import './UserTable.css';
 
 interface UserTableProps {
@@ -57,7 +58,11 @@ const UserTable = (props: UserTableProps) => {
     if (!!filteredUsers.length) {
       return filteredUsers;
     } else {
-      return <p>No users found for that search</p>;
+      return (
+        <p className="empty-search-message">
+          Sorry, no users were found for that search
+        </p>
+      );
     }
   };
 

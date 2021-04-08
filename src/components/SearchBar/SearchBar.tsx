@@ -22,7 +22,7 @@ const SearchBar = (props: SearchBarProps) => {
 
   return (
     <div className="search-bar">
-      <label htmlFor="search-input">Search By User Name:</label>
+      <label htmlFor="search-input">Search By Name:</label>
       <input
         type="text"
         id="search-input"

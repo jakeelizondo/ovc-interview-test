@@ -30,7 +30,7 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  // FETCH AND SET USERS UPON COMPONENT MOUNT
+  // FETCH AND SET USERS/RESET ANY ERRORS UPON COMPONENT MOUNT
 
   useEffect(() => {
     dispatch(clearUsersError());
@@ -87,15 +87,15 @@ const App = () => {
         {postError ? <ErrorBar message={errorMessages.postErr} /> : null}
         {usersArr !== undefined ? (
           <div>
+            {isLoadingUsers || isLoadingPosts ? (
+              <p className="load-message">Loading...</p>
+            ) : null}
+
             {isViewingPosts && !userError && !postError ? (
               <HeadingBar
                 headingText={`${focusUser}'s Posts:`}
                 onButtonClick={handlePostViewBackClick}
               />
-            ) : null}
-
-            {isLoadingUsers || isLoadingPosts ? (
-              <p className="load-message">Loading...</p>
             ) : null}
 
             {!isViewingPosts && !userError && !postError ? (
