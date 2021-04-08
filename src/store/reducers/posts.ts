@@ -32,6 +32,8 @@ const postReducer = (
       };
     case actionTypes.LOADING_POSTS:
       return { ...state, loadingPosts: true };
+    case actionTypes.CLEAR_POSTS:
+      return { ...state, posts: [] };
     default:
       return state;
   }

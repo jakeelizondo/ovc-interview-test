@@ -1,45 +1,82 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10vh;
+@media only screen and (max-width: 800px) {
+  header {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    background-color: #457b9d;
+    padding: 1rem 0rem;
+    color: white;
+  }
+
+  .App {
+    margin-top: 5vh;
+    padding: 0vh 1vh;
+  }
+
+  .load-message {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .back-button {
+    padding: 0.5rem;
+    font-size: 20px;
+    background-color: #457b9d;
+    color: white;
+    border: none;
+  }
+
+  .post-user {
+    margin: 3rem 0rem 1rem 0rem;
+  }
 }
 
-.load-message {
-  text-align: center;
-  font-size: 30px;
-}
+@media only screen and (min-width: 800px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+  }
 
-header {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 700;
-  background-color: #457b9d;
-  padding: 1rem 0rem;
-  color: white;
-}
+  .load-message {
+    text-align: center;
+    font-size: 30px;
+  }
 
-.back-button {
-  padding: 0.5rem;
-  font-size: 20px;
-  background-color: #457b9d;
-  color: white;
-  border: none;
-}
+  header {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    background-color: #457b9d;
+    padding: 1rem 0rem;
+    color: white;
+  }
 
-.post-user {
-  margin: 3rem 0rem 1rem 0rem;
-}
+  .back-button {
+    padding: 0.5rem;
+    font-size: 20px;
+    background-color: #457b9d;
+    color: white;
+    border: none;
+  }
 
-.hoverable {
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
+  .post-user {
+    margin: 3rem 0rem 1rem 0rem;
+  }
 
-.hoverable:hover {
-  transform: translate3D(0, -1px, 0) scale(1.03);
-  box-shadow: 8px 10px 10px rgba(39, 44, 49, 0.07),
-    1px 6px 12px rgba(39, 44, 49, 0.04);
-  transition: all 0.4s ease;
+  .hoverable {
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .hoverable:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    box-shadow: 8px 10px 10px rgba(39, 44, 49, 0.07),
+      1px 6px 12px rgba(39, 44, 49, 0.04);
+    transition: all 0.4s ease;
+  }
 }

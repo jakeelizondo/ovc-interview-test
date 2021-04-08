@@ -2,30 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getUsers } from '../../store/actions/users';
-import { getPosts } from '../../store/actions/posts';
+import { clearPosts, getPosts } from '../../store/actions/posts';
 import { RootStore } from '../../store/store';
 import UserTable from '../UserTable/UserTable';
 import './App.css';
 
 const App = () => {
+  // INTITIALIZE LOCAL COMPONENT STATE
   const [isFiltering, setIsFiltering] = useState(false);
   const [filterTerm, setFilterTerm] = useState('');
   const [focusUser, setFocusUser] = useState('');
   const [isViewingPosts, setIsViewingPosts] = useState(false);
 
   const dispatch = useDispatch();
+
+  // FETCH AND SET USERS UPON COMPONENT MOUNT
+
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
+  // REDUX GLOBAL STATE SELECTORS
+
   const isLoadingUsers = useSelector(
     (state: RootStore) => state.users.loadingUsers
   );
   const isLoadingPosts = useSelector(
     (state: RootStore) => state.posts.loadingPosts
   );
-
   const usersArr = useSelector((state: RootStore) => state.users.users);
   const postsArr = useSelector((state: RootStore) => state.posts.posts);
+
+  // HANDLER FUNCTIONS
 
   const handleFilterUsers = (text: string) => {
     setIsFiltering(true);
@@ -48,6 +56,7 @@ const App = () => {
     setIsFiltering(false);
     setFilterTerm('');
     setFocusUser('');
+    dispatch(clearPosts());
     setIsViewingPosts(false);
   };
 
@@ -55,12 +64,6 @@ const App = () => {
     <React.Fragment>
       <header>User Explorer</header>
       <div className="App">
-        {isLoadingUsers ? (
-          <p className="load-message">Loading users...</p>
-        ) : null}
-        {isLoadingPosts ? (
-          <p className="load-message">Loading posts...</p>
-        ) : null}
         {usersArr !== undefined ? (
           <div>
             {!isViewingPosts ? (
@@ -69,6 +72,12 @@ const App = () => {
                 onReset={handleTableReset}
                 onFilter={handleFilterUsers}
               />
+            ) : null}{' '}
+            {isLoadingUsers ? (
+              <p className="load-message">Loading users...</p>
+            ) : null}
+            {isLoadingPosts ? (
+              <p className="load-message">Loading posts...</p>
             ) : null}
             {isViewingPosts ? (
               <div>

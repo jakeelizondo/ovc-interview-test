@@ -10,3 +10,7 @@
 .user-company {
   text-align: right;
 }
+
+.user-row {
+  height: 50px;
+}

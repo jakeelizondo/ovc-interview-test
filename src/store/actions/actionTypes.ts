@@ -27,6 +27,7 @@ export type UserDispatchTypes = UsersLoading | GetUsersFail | GetUsersSuccess;
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_FAIL = 'GET_POSTS_FAIL';
 export const LOADING_POSTS = 'LOADING_POSTS';
+export const CLEAR_POSTS = 'CLEAR_POSTS';
 
 export interface PostsLoading {
   type: typeof LOADING_POSTS;
@@ -41,4 +42,12 @@ export interface GetPostsSuccess {
   payload: { posts: Post[] };
 }
 
-export type PostDispatchTypes = PostsLoading | GetPostsFail | GetPostsSuccess;
+export interface ClearPosts {
+  type: typeof CLEAR_POSTS;
+}
+
+export type PostDispatchTypes =
+  | PostsLoading
+  | GetPostsFail
+  | GetPostsSuccess
+  | ClearPosts;

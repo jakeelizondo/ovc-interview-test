@@ -22,3 +22,7 @@ export const getPosts = (id: number) => {
     }
   };
 };
+
+export const clearPosts = () => {
+  return { type: actionTypes.CLEAR_POSTS };
+};
