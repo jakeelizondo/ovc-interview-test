@@ -10,7 +10,7 @@ Table of Contents:\
 [Technologies Used](#technologies-used)\
 [What I Learned](#what-i-learned)\
 [Core Decisions](#core-decisions-for-discussion)\
-[Areas For Improvement](#areas-for-improvement)\
+[Areas For Improvement](#areas-for-improvement)
 
 ## Summary
 
