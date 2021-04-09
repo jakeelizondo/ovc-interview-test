@@ -4,6 +4,13 @@ import { User, UserConcise } from '../users.model';
 /* cSpell:disable */
 export const testFunc = (): void => {};
 
+export const testFilterTerm = 'lea';
+
+export const testString = 'Testy mcTesterson';
+
+export const testErrorMessage =
+  'Oops there was an error. Hope you displayed it';
+
 export const testUserConcise: UserConcise = {
   id: 1,
   name: 'testuser',

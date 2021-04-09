@@ -1,11 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import ErrorBar from './ErrorBar';
+import { testErrorMessage } from '../../utility/test-helpers';
 
-describe('Search Bar', () => {
-  it('renders without crashing', () => {
-    const table = document.createElement('table');
-    ReactDOM.render(<ErrorBar message={'test-error'} />, table);
-    ReactDOM.unmountComponentAtNode(table);
+const setup = () => {
+  const component = shallow(<ErrorBar message={testErrorMessage} />);
+  return component;
+};
+
+describe('Error Bar', () => {
+  let component: any;
+  beforeEach(() => {
+    component = setup();
+  });
+
+  it('Should render without crashing', () => {
+    expect(component.length).toBe(1);
+  });
+
+  describe('render <h3>', () => {
+    it('Should render an <h3>', () => {
+      expect(component.find('h3')).toHaveLength(1);
+    });
+
+    it('Should render the h3 with message passed through props', () => {
+      expect(component.find('h3').text()).toEqual(testErrorMessage);
+    });
   });
 });

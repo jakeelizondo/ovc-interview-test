@@ -1,13 +1,43 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+import { testFunc } from '../../utility/test-helpers';
 import TableHeader from './TableHeader';
 
-describe('Table Header', () => {
-  it('renders without crashing', () => {
-    const table = document.createElement('table');
-    const testCols = ['1', '2', '3'];
+const testCols = ['1', '2', '3'];
 
-    ReactDOM.render(<TableHeader cols={testCols} />, table);
-    ReactDOM.unmountComponentAtNode(table);
+const setup = () => {
+  const component = shallow(<TableHeader cols={testCols} />);
+  return component;
+};
+
+let container: any;
+
+describe('Table Header', () => {
+  let component: any;
+  beforeEach(() => {
+    component = setup();
+  });
+
+  it('Should render without crashing', () => {
+    expect(component.length).toBe(1);
+  });
+
+  describe('Table Head', () => {
+    it('should render a table head', () => {
+      container = component.find('thead');
+      expect(container).toHaveLength(1);
+    });
+  });
+
+  describe('Table Head Row', () => {
+    it('should render rows', () => {
+      container = component.find('tr');
+      expect(container).toHaveLength(1);
+    });
+
+    it('Should render rows with text from props', () => {
+      container = component.find('tr');
+      expect(container.text()).toEqual(testCols.join(''));
+    });
   });
 });
