@@ -86,7 +86,7 @@ const App = () => {
         {userError ? <ErrorBar message={errorMessages.userErr} /> : null}
         {postError ? <ErrorBar message={errorMessages.postErr} /> : null}
         {usersArr !== undefined ? (
-          <div>
+          <div className="table-container">
             {isLoadingUsers || isLoadingPosts ? (
               <p className="load-message">Loading...</p>
             ) : null}
