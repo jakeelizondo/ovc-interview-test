@@ -27,3 +27,11 @@ export interface User {
   website: string;
   company: UserCompany;
 }
+
+export interface UserConcise {
+  id: number;
+  name: string;
+  email: string;
+  city: string;
+  company: string;
+}

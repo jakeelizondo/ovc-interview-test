@@ -4,6 +4,8 @@
         "component",
         "hoverable",
         "node",
+        "testcity",
+        "testuser",
         "unmount"
     ]
 }

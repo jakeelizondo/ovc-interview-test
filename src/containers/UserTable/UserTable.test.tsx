@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  testFunc,
+  testPostsArr,
+  testUsersArr,
+} from '../../utility/test-helpers';
 import UserTable from './UserTable';
 
 describe('User Table', () => {
@@ -7,12 +12,12 @@ describe('User Table', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <UserTable
-        users={[]}
-        posts={[]}
+        users={testUsersArr}
+        posts={testPostsArr}
         isFiltering={false}
         filterTerm={''}
         isViewingPosts={false}
-        onRowClick={() => {}}
+        onRowClick={testFunc}
       />,
       div
     );

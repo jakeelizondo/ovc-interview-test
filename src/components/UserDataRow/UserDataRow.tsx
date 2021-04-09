@@ -1,15 +1,10 @@
 import React from 'react';
+import { UserConcise } from '../../users.model';
 import './UserDataRow.css';
 
 interface UserDataRowProps {
   onRowClick: (id: number, name: string) => void;
-  user: {
-    id: number;
-    name: string;
-    email: string;
-    city: string;
-    company: string;
-  };
+  user: UserConcise;
 }
 
 const UserRow = (props: UserDataRowProps) => {
