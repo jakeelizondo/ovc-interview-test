@@ -2,6 +2,16 @@
 
 https://github.com/jakeelizondo/ovc-interview-test
 
+Table of Contents:\
+\
+[Summary](#summary)\
+[Core User Stories](#core-user-stories)\
+[Additional Features](#additional-features)\
+[Technologies Used](#technologies-used)\
+[What I Learned](#what-i-learned)\
+[Core Decisions](#core-decisions-for-discussion)\
+[Areas For Improvement](#areas-for-improvement)\
+
 ## Summary
 
 This application was developed as part of a coding challenge to solve the following problem: https://github.com/OneviewCommerce/typescript-react-redux-test, as well as for practice utilizing TypeScript, Redux, Jest, and React.
