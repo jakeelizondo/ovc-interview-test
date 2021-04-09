@@ -59,9 +59,14 @@ const UserTable = (props: UserTableProps) => {
       return filteredUsers;
     } else {
       return (
-        <p className="empty-search-message">
-          Sorry, no users were found for that search
-        </p>
+        <tr>
+          <td className="empty-search-message">
+            Sorry, no users were found for that search
+          </td>
+          <td />
+          <td />
+          <td />
+        </tr>
       );
     }
   };

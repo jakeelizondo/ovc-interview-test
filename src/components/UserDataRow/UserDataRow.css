@@ -13,4 +13,5 @@
 
 .user-row {
   height: 50px;
+  cursor: pointer;
 }
