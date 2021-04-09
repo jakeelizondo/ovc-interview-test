@@ -5,10 +5,12 @@
         "browserslist",
         "component",
         "hoverable",
+        "middlewares",
         "node",
         "oneview",
         "testcity",
         "testuser",
+        "todos",
         "unmount"
     ]
 }

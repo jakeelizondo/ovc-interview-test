@@ -30,6 +30,7 @@ This application was developed as part of a coding challenge to solve the follow
 - If there is an error fetching users, an error message is displayed
 - If there is an error fetching posts, an error message is displayed
 - Unit tests for each component
+- Added tests for both synchronous and asynchronous Redux actions
 
 ## Technologies Used
 
