@@ -53,6 +53,8 @@ This project was my first application fully utilizing Redux in an application; m
 
 2. I considered presenting the User table and Post table views on separate deep links, using react-router. However, since this library was not under the list of technologies to use, I chose to instead present the single route/view. However, if the desire was to have the separate views available on different urls (users/ and users/posts/:userId for example) I could accomplish this with react-router, for example using dynamic route props to pass the userId to the posts table container component, which would then make the async call to the server and populate the table with that users posts.
 
+3. The UserRow and PostRow are currently split into two components. This was done to create essentially a sort of clickable row component vs a dummy row component that just presented data. This also allowed for more specific typing on the type of Array being passed as data. However, if required for the application, or preferred by the team, in this type of situation these two components could potentially be refactored to one TableRow component, similar to how the TableHeader is currently structured, taking the data and an optional callback function as its props.
+
 ## Areas for improvement
 
 #### Redux folder and file structure/naming conventions.
